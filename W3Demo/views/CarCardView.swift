@@ -37,7 +37,7 @@ struct CarCard: View {
                     
                     HStack {
                         Spacer()
-                        Text("19.99")
+                        Text("$\(carVM.car.price, specifier: "%.0f")")
                             .font(.headline.bold())
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
@@ -56,10 +56,11 @@ struct CarCard: View {
                         .foregroundColor(.secondary)
                     
                     HStack(spacing: 16) {
-                        Label("\(carVM.car.year)", systemImage: "gauge")
-                        Label("\(carVM.car.fuelType)", systemImage: "fuelpump")
-                        Label("\(carVM.car.year)", systemImage: "paintpalette")
-                        Label("\(carVM.car.year)", systemImage: "gearshape")
+                        Label("\(carVM.car.year)", systemImage: "calendar")
+                        Label("\(carVM.car.miles) mi", systemImage: "gauge")
+                        if let fuelType = carVM.car.fuelType {
+                            Label(fuelType, systemImage: "fuelpump")
+                        }
                     }
                     .font(.caption)
                     .foregroundColor(.secondary)

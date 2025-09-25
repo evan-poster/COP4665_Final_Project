@@ -18,6 +18,26 @@ extension User {
     static var preview: User = User(
         fname: "John", lname: "Doe", username: "example", email: "user@example.com", digest: "lk32jlk32jelk23je"
     )
+    
+    static var mockSeller1: User = User(
+        fname: "Sarah", lname: "Johnson", username: "sarahj", email: "sarah.j@example.com", digest: "abc123"
+    )
+    
+    static var mockSeller2: User = User(
+        fname: "Mike", lname: "Chen", username: "mikechen", email: "mike.chen@example.com", digest: "def456"
+    )
+    
+    static var mockSeller3: User = User(
+        fname: "Emily", lname: "Rodriguez", username: "emilyrod", email: "emily.r@example.com", digest: "ghi789"
+    )
+    
+    static var mockSeller4: User = User(
+        fname: "David", lname: "Wilson", username: "davidw", email: "david.w@example.com", digest: "jkl012"
+    )
+    
+    static var mockSeller5: User = User(
+        fname: "Lisa", lname: "Thompson", username: "lisat", email: "lisa.t@example.com", digest: "mno345"
+    )
 }
 
 class MockSession: Session {
