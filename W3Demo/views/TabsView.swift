@@ -29,10 +29,11 @@ struct MainView: View {
     var body: some View {
         ThemedBackground {
             TabView {
-                NavigationStack { SearchView() }.tabItem { Label("Search", systemImage: "list.bullet").labelStyle(TabStyle()) }
-                NavigationStack { MapView() }.tabItem { Label("Map", systemImage: "list.bullet") }
-                NavigationStack { FeedView() }.tabItem { Label("Feed", systemImage: "list.bullet") }
-                NavigationStack { OrdersView() }.tabItem { Label("Orders", systemImage: "plus.circle") }
+                NavigationStack { SearchView() }.tabItem { Label("Search", systemImage: "magnifyingglass").labelStyle(TabStyle()) }
+                NavigationStack { MapView() }.tabItem { Label("Map", systemImage: "map") }
+                NavigationStack { FeedView() }.tabItem { Label("Feed", systemImage: "house") }
+                NavigationStack { ConversationsView() }.tabItem { Label("Messages", systemImage: "message") }
+                NavigationStack { OrdersView() }.tabItem { Label("Orders", systemImage: "bag") }
                 NavigationStack { ProfileView() }.tabItem { Label("Profile", systemImage: "person") }
             }
             .scrollContentBackground(.hidden)
