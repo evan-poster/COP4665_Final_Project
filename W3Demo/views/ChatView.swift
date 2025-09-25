@@ -93,7 +93,7 @@ struct ChatView: View {
     private func scrollToBottom(proxy: ScrollViewReader) {
         if let lastMessage = conversation.messages.last {
             withAnimation(.easeOut(duration: 0.3)) {
-                proxy.scrollTo(lastMessage.id, anchor: .bottom)
+                proxy.scrollTo(lastMessage.id, anchor: UnitPoint.bottom)
             }
         }
     }
@@ -126,7 +126,7 @@ struct CarContextHeader: View {
         .overlay(
             Rectangle()
                 .frame(height: 0.5)
-                .foregroundColor(.separator),
+                .foregroundColor(Color(.separator)),
             alignment: .bottom
         )
     }
@@ -207,6 +207,6 @@ struct MessageComposer: View {
         lastMessage: "Is this car still available?"
     )
     
-    return ChatView(conversation: conversation)
+    ChatView(conversation: conversation)
         .environment(\.theme, .sunset)
 }
