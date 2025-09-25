@@ -32,10 +32,18 @@ struct ChatView: View {
                         .padding(.top, 8)
                     }
                     .onAppear {
-                        scrollToBottom(proxy: proxy)
+                        if let lastMessage = conversation.messages.last {
+                            withAnimation(.easeOut(duration: 0.3)) {
+                                proxy.scrollTo(lastMessage.id, anchor: UnitPoint.bottom)
+                            }
+                        }
                     }
                     .onChange(of: conversation.messages.count) { _, _ in
-                        scrollToBottom(proxy: proxy)
+                        if let lastMessage = conversation.messages.last {
+                            withAnimation(.easeOut(duration: 0.3)) {
+                                proxy.scrollTo(lastMessage.id, anchor: UnitPoint.bottom)
+                            }
+                        }
                     }
                 }
                 
@@ -90,13 +98,6 @@ struct ChatView: View {
         modelContext.insert(responseMessage)
     }
     
-    private func scrollToBottom(proxy: ScrollViewReader) {
-        if let lastMessage = conversation.messages.last {
-            withAnimation(.easeOut(duration: 0.3)) {
-                proxy.scrollTo(lastMessage.id, anchor: UnitPoint.bottom)
-            }
-        }
-    }
 }
 
 struct CarContextHeader: View {
