@@ -68,27 +68,27 @@ struct CarDetailsView: View {
     }
     
     private func findOrCreateConversation() -> Conversation? {
-        // Try to find existing conversation
-        let descriptor = FetchDescriptor<Conversation>(
-            predicate: #Predicate<Conversation> { conversation in
-                conversation.carTitle == carVM.car.carName()
-            }
-        )
+        // Create car title string
+        let carTitle = carVM.car.carName()
         
-        if let existingConversation = try? modelContext.fetch(descriptor).first {
+        // Try to find existing conversation by fetching all and filtering
+        let descriptor = FetchDescriptor<Conversation>()
+        
+        if let conversations = try? modelContext.fetch(descriptor),
+           let existingConversation = conversations.first(where: { $0.carTitle == carTitle }) {
             return existingConversation
         }
         
         // Create new conversation
         let conversation = Conversation(
-            carTitle: carVM.car.carName(),
+            carTitle: carTitle,
             otherUserName: carVM.car.owner?.name() ?? "Seller",
-            lastMessage: "Hi! I'm interested in your \(carVM.car.carName())"
+            lastMessage: "Hi! I'm interested in your \(carTitle)"
         )
         
         // Add initial message
         let initialMessage = Message(
-            content: "Hi! I'm interested in your \(carVM.car.carName()). Is it still available?",
+            content: "Hi! I'm interested in your \(carTitle). Is it still available?",
             isFromCurrentUser: true
         )
         initialMessage.conversation = conversation
