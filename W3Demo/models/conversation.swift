@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-class Conversation {
+class Conversation: ObservableObject {
     @Attribute(.unique) var id: UUID = UUID()
     var carTitle: String
     var otherUserName: String
